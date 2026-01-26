@@ -1,23 +1,31 @@
-resource "aws_internet_gateway" "igw_ireland" {
+resource "aws_internet_gateway" "igw1_ireland" {
+  vpc_id = aws_vpc.vpc1_ireland.id
+
+  tags = {
+    Name = "igw1_ireland"
+  }
+}
+
+resource "aws_internet_gateway" "igw2_ireland" {
   vpc_id = aws_vpc.vpc2_ireland.id
 
   tags = {
-    Name = "igw_ireland"
+    Name = "igw2_ireland"
   }
 }
 
-resource "aws_internet_gateway" "igw1_london" {
+resource "aws_internet_gateway" "igw4_london" {
   vpc_id = aws_vpc.vpc4_london.id
 
   tags = {
-    Name = "igw1_london"
+    Name = "igw4_london"
   }
 }
 
-resource "aws_internet_gateway" "igw2_london" {
+resource "aws_internet_gateway" "igw5_london" {
   vpc_id = aws_vpc.vpc5_london.id
 
   tags = {
-    Name = "igw2_london"
+    Name = "igw5_london"
   }
 }
