@@ -4,26 +4,14 @@ resource "aws_route_table" "vpc1-rt" {
   #Route to internet
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw_ireland.id
+    gateway_id = aws_internet_gateway.igw1_ireland.id
   }
 
-  # Route to vpc via TGW
-  route {
-    cidr_block         = ""
-    transit_gateway_id = aws_ec2_transit_gateway.tgw.id
-  }
-
-  # Route to 
-  route {
-    cidr_block         = ""
-    transit_gateway_id = 
-  }
-
-  # Route to 
-  route {
-    cidr_block         = ""
-    transit_gateway_id = 
-  }
+  # Every other internal route
+  #   route {
+  #     cidr_block         = "10.0.0.0/8"
+  #     transit_gateway_id = aws_ec2_transit_gateway.tgw.id
+  #   }
 
   tags = {
     Name = "vpc1-rt"
