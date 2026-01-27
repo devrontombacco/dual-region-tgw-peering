@@ -21,3 +21,19 @@ resource "aws_ec2_transit_gateway_peering_attachment_accepter" "london_accept" {
     Name = "london-accept-ireland-peering"
   }
 }
+
+resource "aws_ec2_transit_gateway_route" "ireland_to_london" {
+  provider = aws.ireland
+
+  destination_cidr_block         = "10.100.0.0/15"
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.ireland_to_london.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway.tgw_ireland.association_default_route_table_id
+}
+
+resource "aws_ec2_transit_gateway_route" "london_to_ireland" {
+  provider = aws.london
+
+  destination_cidr_block         = "10.0.0.0/15"
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_peering_attachment.ireland_to_london.id
+  transit_gateway_route_table_id = aws_ec2_transit_gateway.tgw_london.association_default_route_table_id
+}
