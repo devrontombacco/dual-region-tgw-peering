@@ -63,7 +63,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "tgw1_vpc3" {
 resource "aws_ec2_transit_gateway_vpc_attachment" "tgw2_vpc4" {
   transit_gateway_id = aws_ec2_transit_gateway.tgw_london.id
   vpc_id             = aws_vpc.vpc4_london.id
-  subnet_ids         = [aws_subnet.public_subnet_4]
+  subnet_ids         = [aws_subnet.public_subnet_4.id]
   dns_support        = "enable"
 
   tags = {
