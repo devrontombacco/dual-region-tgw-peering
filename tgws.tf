@@ -1,6 +1,7 @@
 resource "aws_ec2_transit_gateway" "tgw_ireland" {
   description     = "main-tgw"
   amazon_side_asn = 64512
+  provider        = aws.ireland
 
   auto_accept_shared_attachments  = "disable"
   default_route_table_association = "enable"
@@ -15,6 +16,7 @@ resource "aws_ec2_transit_gateway" "tgw_ireland" {
 resource "aws_ec2_transit_gateway" "tgw_london" {
   description     = "main-tgw"
   amazon_side_asn = 64513
+  provider        = aws.london
 
   auto_accept_shared_attachments  = "disable"
   default_route_table_association = "enable"
