@@ -6,6 +6,10 @@ resource "aws_ec2_transit_gateway_peering_attachment" "ireland_to_london" {
   peer_transit_gateway_id = aws_ec2_transit_gateway.tgw_london.id
   transit_gateway_id      = aws_ec2_transit_gateway.tgw_ireland.id
 
+  depends_on = [
+    aws_ec2_transit_gateway_peering_attachment_accepter.london_accept
+  ]
+
   tags = {
     Name = "ireland-london-peering"
   }
@@ -17,6 +21,9 @@ resource "aws_ec2_transit_gateway_peering_attachment_accepter" "london_accept" {
 
   transit_gateway_attachment_id = aws_ec2_transit_gateway_peering_attachment.ireland_to_london.id
 
+  depends_on = [
+    aws_ec2_transit_gateway_peering_attachment_accepter.london_accepter
+  ]
   tags = {
     Name = "london-accept-ireland-peering"
   }
