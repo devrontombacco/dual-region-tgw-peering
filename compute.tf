@@ -32,7 +32,7 @@ data "aws_ami" "ubuntu_london" {
 
 
 resource "aws_instance" "ec2_1" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.ubuntu_ireland.id
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public_subnet_1.id
   provider                    = aws.ireland
@@ -46,7 +46,7 @@ resource "aws_instance" "ec2_1" {
 }
 
 resource "aws_instance" "ec2_2" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.ubuntu_ireland.id
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public_subnet_2.id
   provider                    = aws.ireland
@@ -60,7 +60,7 @@ resource "aws_instance" "ec2_2" {
 }
 
 resource "aws_instance" "ec2_3" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.ubuntu_ireland.id
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.private_subnet_3.id
   provider                    = aws.ireland
@@ -74,7 +74,7 @@ resource "aws_instance" "ec2_3" {
 }
 
 resource "aws_instance" "ec2_4" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.ubuntu_london.id
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public_subnet_4.id
   provider                    = aws.london
@@ -88,7 +88,7 @@ resource "aws_instance" "ec2_4" {
 }
 
 resource "aws_instance" "ec2_5" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.ubuntu_london.id
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public_subnet_5.id
   provider                    = aws.london
