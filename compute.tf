@@ -21,7 +21,7 @@ resource "aws_instance" "ec2_1" {
   subnet_id                   = aws_subnet.public_subnet_1.id
   key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
   associate_public_ip_address = true
-  # vpc_security_group_ids      = [ Will Insert SG here once created]
+  vpc_security_group_ids      = [aws_security_group.sg_nginx1.id]
 
   tags = {
     Name = "ec2_1"
@@ -34,7 +34,7 @@ resource "aws_instance" "ec2_2" {
   subnet_id                   = aws_subnet.public_subnet_2.id
   key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
   associate_public_ip_address = true
-  # vpc_security_group_ids      = [ Will Insert SG here once created]
+  vpc_security_group_ids      = [aws_security_group.sg_nginx2.id]
 
   tags = {
     Name = "ec2_2"
@@ -44,10 +44,10 @@ resource "aws_instance" "ec2_2" {
 resource "aws_instance" "ec2_3" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t3.micro"
-  subnet_id                   = aws_subnet.public_subnet_3.id
+  subnet_id                   = aws_subnet.private_subnet_3.id
   key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
   associate_public_ip_address = false
-  # vpc_security_group_ids      = [ Will Insert SG here once created]
+  vpc_security_group_ids      = [aws_security_group.sg_flaskApp3.id]
 
   tags = {
     Name = "ec2_3"
@@ -60,7 +60,7 @@ resource "aws_instance" "ec2_4" {
   subnet_id                   = aws_subnet.public_subnet_4.id
   key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
   associate_public_ip_address = true
-  # vpc_security_group_ids      = [ Will Insert SG here once created]
+  vpc_security_group_ids      = [aws_security_group.sg_nginx4.id]
 
   tags = {
     Name = "ec2_4"
@@ -73,7 +73,7 @@ resource "aws_instance" "ec2_5" {
   subnet_id                   = aws_subnet.public_subnet_5.id
   key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
   associate_public_ip_address = true
-  # vpc_security_group_ids      = [ Will Insert SG here once created]
+  vpc_security_group_ids      = [aws_security_group.sg_nginx5.id]
 
   tags = {
     Name = "ec2_5"
