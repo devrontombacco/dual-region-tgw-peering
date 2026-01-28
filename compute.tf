@@ -1,4 +1,5 @@
 data "aws_ami" "ubuntu_ireland" {
+  provider    = aws.ireland
   most_recent = true
 
   filter {
@@ -15,6 +16,7 @@ data "aws_ami" "ubuntu_ireland" {
 }
 
 data "aws_ami" "ubuntu_london" {
+  provider    = aws.london
   most_recent = true
 
   filter {
