@@ -2,6 +2,7 @@ resource "aws_security_group" "sg_nginx1" {
   name        = "sg_nginx"
   description = "Allow SSH + ICMP"
   vpc_id      = aws_vpc.vpc1_ireland.id
+  provider    = aws.ireland
 
   ingress {
     from_port   = 80
@@ -33,6 +34,7 @@ resource "aws_security_group" "sg_nginx2" {
   name        = "sg_nginx"
   description = "Allow SSH + ICMP"
   vpc_id      = aws_vpc.vpc2_ireland.id
+  provider    = aws.ireland
 
   ingress {
     from_port   = 80
@@ -64,6 +66,7 @@ resource "aws_security_group" "sg_flaskApp3" {
   name        = "sg_nginx"
   description = "Allow SSH + ICMP"
   vpc_id      = aws_vpc.vpc3_ireland.id
+  provider    = aws.ireland
 
   ingress {
     from_port   = 5000
@@ -95,6 +98,7 @@ resource "aws_security_group" "sg_nginx4" {
   name        = "sg_nginx"
   description = "Allow SSH + ICMP"
   vpc_id      = aws_vpc.vpc4_london.id
+  provider    = aws.london
 
   ingress {
     from_port   = 80
@@ -126,6 +130,7 @@ resource "aws_security_group" "sg_nginx5" {
   name        = "sg_nginx"
   description = "Allow SSH + ICMP"
   vpc_id      = aws_vpc.vpc5_london.id
+  provider    = aws.london
 
   ingress {
     from_port   = 80
