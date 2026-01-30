@@ -99,3 +99,29 @@ resource "aws_route_table" "vpc5-rt" {
     Name = "vpc5-rt"
   }
 }
+
+
+resource "aws_route_table_association" "vpc1_subnet_association" {
+  subnet_id      = aws_subnet.public_subnet_1.id
+  route_table_id = aws_route_table.vpc1-rt.id
+}
+
+resource "aws_route_table_association" "vpc2_subnet_association" {
+  subnet_id      = aws_subnet.public_subnet_2.id
+  route_table_id = aws_route_table.vpc2-rt.id
+}
+
+resource "aws_route_table_association" "vpc3_subnet_association" {
+  subnet_id      = aws_subnet.private_subnet_3.id
+  route_table_id = aws_route_table.vpc3-rt.id
+}
+
+resource "aws_route_table_association" "vpc4_subnet_association" {
+  subnet_id      = aws_subnet.public_subnet_4.id
+  route_table_id = aws_route_table.vpc4-rt.id
+}
+
+resource "aws_route_table_association" "vpc5_subnet_association" {
+  subnet_id      = aws_subnet.public_subnet_5.id
+  route_table_id = aws_route_table.vpc5-rt.id
+}
