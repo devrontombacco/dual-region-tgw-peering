@@ -38,7 +38,7 @@ resource "aws_instance" "ec2_1" {
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public_subnet_1.id
   provider                    = aws.ireland
-  key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
+  key_name                    = "my_aws_key"
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.sg_nginx1.id]
 
@@ -52,7 +52,7 @@ resource "aws_instance" "ec2_2" {
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public_subnet_2.id
   provider                    = aws.ireland
-  key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
+  key_name                    = "my_aws_key"
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.sg_nginx2.id]
 
@@ -66,7 +66,7 @@ resource "aws_instance" "ec2_3" {
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.private_subnet_3.id
   provider                    = aws.ireland
-  key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
+  key_name                    = "my_aws_key"
   associate_public_ip_address = false
   vpc_security_group_ids      = [aws_security_group.sg_flaskApp3.id]
 
@@ -80,7 +80,7 @@ resource "aws_instance" "ec2_4" {
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public_subnet_4.id
   provider                    = aws.london
-  key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
+  key_name                    = "my_aws_key"
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.sg_nginx4.id]
 
@@ -94,7 +94,7 @@ resource "aws_instance" "ec2_5" {
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public_subnet_5.id
   provider                    = aws.london
-  key_name                    = "MY_EC2_INSTANCE_KEYPAIR"
+  key_name                    = "my_aws_key"
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.sg_nginx5.id]
 
