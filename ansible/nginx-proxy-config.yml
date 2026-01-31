@@ -1,0 +1,48 @@
+---
+- name: Configure Nginx as reverse proxy to Flask
+  hosts: nginx_servers
+  become: yes
+
+  vars:
+    flask_backend: "3.253.3.198:5000"
+
+  tasks:
+    - name: Create Nginx proxy configuration
+      copy:
+        dest: /etc/nginx/sites-available/flask-proxy
+        content: |
+          server {
+              listen 80;
+              server_name _;
+              
+              location / {
+                  proxy_pass http://{{ flask_backend }};
+                  proxy_set_header Host $host;
+                  proxy_set_header X-Real-IP $remote_addr;
+                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto $scheme;
+              }
+          }
+        mode: "0644"
+
+    - name: Remove default Nginx site
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: Enable Flask proxy site
+      file:
+        src: /etc/nginx/sites-available/flask-proxy
+        dest: /etc/nginx/sites-enabled/flask-proxy
+        state: link
+
+    - name: Test Nginx configuration
+      command: nginx -t
+      register: nginx_test
+      changed_when: false
+
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: reloaded
+      when: nginx_test.rc == 0
