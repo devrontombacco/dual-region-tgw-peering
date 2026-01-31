@@ -1,0 +1,30 @@
+---
+- name: Install and configure Nginx
+  hosts: nginx_servers
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Check Nginx is running
+      command: systemctl status nginx
+      register: nginx_status
+      changed_when: false
+
+    - name: Display Nginx status
+      debug:
+        var: nginx_status.stdout_lines
