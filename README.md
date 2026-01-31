@@ -199,13 +199,51 @@ All should display: **"Hello from Flask backend!"**
 
 ## Features
 
+- Multi-region infrastructure with Transit Gateway peering
+- Automated deployment with Terraform
+- Configuration management with Ansible
+- Nginx reverse proxy architecture
+- Cross-region network routing
+- Security group-based access control
+
 ## Technologies Used
 
-## Technical Skills
+### Infrastructure & Cloud
 
-## Troubleshooting Experience
+- **AWS (Amazon Web Services)** - Cloud platform
+  - EC2 (Elastic Compute Cloud) - Virtual servers
+  - VPC (Virtual Private Cloud) - Network isolation
+  - Transit Gateway - Multi-region connectivity
+  - Security Groups - Network firewall rules
+  - Internet Gateway - Public internet access
 
-## DevOps Best Practices
+- **Terraform** - Infrastructure as Code (IaC) tool for provisioning and managing AWS resources
+
+### Configuration Management
+
+- **Ansible** - Automation platform for server configuration and application deployment
+  - Playbooks for Nginx and Flask installation
+  - Inventory management for multi-host deployments
+  - Idempotent configuration management
+
+### Application Stack
+
+- **Nginx** - High-performance web server and reverse proxy
+- **Flask** - Lightweight Python web framework
+- **Python 3** - Programming language for Flask application
+- **Systemd** - Linux service management for Flask application
+
+### Development Tools
+
+- **Git** - Version control
+- **SSH** - Secure remote access to EC2 instances
+- **Bash** - Shell scripting and command-line operations
+
+### Network Protocols
+
+- **HTTP** - Web traffic
+- **TCP** - Reliable transport protocol
+- **SSH** - Encrypted remote administration
 
 ## Cleanup
 
@@ -217,4 +255,13 @@ terraform destroy
 
 ## License
 
+This project is open source and available under the MIT License.
+
 ## Acknowledgments
+
+- **HashiCorp** - For developing Terraform and comprehensive documentation
+- **Red Hat/Ansible** - For creating Ansible and the automation ecosystem
+- **AWS** - For detailed documentation on Transit Gateway and multi-region architectures
+- **Nginx** - For reverse proxy documentation and best practices
+- **Flask Community** - For lightweight web framework documentation
+- **Stack Overflow Community** - For troubleshooting assistance during development
