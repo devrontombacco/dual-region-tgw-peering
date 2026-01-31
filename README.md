@@ -18,4 +18,4 @@ This project demonstrates a multi-region AWS infrastructure with automated confi
 - Configuration Management: Ansible automates server configuration across all instances, eliminating manual setup and ensuring consistency
 - Reverse Proxy Architecture: All four Nginx servers can proxy requests to a Flask backend, assiting with load distribution.
 
-![Screenshot](../dual-region-tgw-peering/architecture.pngarchitecture.png)
+![Screenshot](/architecture.png)
