@@ -19,3 +19,27 @@ This project demonstrates a multi-region AWS infrastructure with automated confi
 - Reverse Proxy Architecture: All four Nginx servers can proxy requests to a Flask backend, assiting with load distribution.
 
 ![Screenshot](/architecture.png)
+
+## Architecture
+
+### Design Decision: Flask Deployment
+
+## Prerequisites before installation
+
+## Deployment
+
+## Features
+
+## Technologies Used
+
+## Technical Skills
+
+## Troubleshooting Experience
+
+## DevOps Best Practices
+
+## Cleanup
+
+## License
+
+## Acknowledgments
