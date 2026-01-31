@@ -52,8 +52,150 @@ Before deploying this infrastructure, ensure you have the following tools and ac
 - Terraform (v1.0+)
 - Ansible (V2.9+)
 - SSH Key Pair
+- You will need to know your own ip (you can use https://ipv4.icanhazip.com)
 
 ## Deployment
+
+Here's how you can run the project:
+
+### Step 1: Clone the Repository
+
+```bash
+git clone
+cd dual-region-tgw-peering
+```
+
+### Step 2: Configure Terraform Variables
+
+Create a `terraform.tfvars` file or update variables in your Terraform configuration:
+
+```bash
+# Example terraform.tfvars
+my_ip_address = "YOUR_PUBLIC_IP"  # Your current public IP for SSH access
+```
+
+To find your public IP:
+
+```bash
+curl https://ipv4.icanhazip.com
+```
+
+### Step 3: Deploy Infrastructure with Terraform
+
+Initialize Terraform and download required providers:
+
+```bash
+terraform init
+```
+
+Review the infrastructure plan:
+
+```bash
+terraform plan
+```
+
+Apply the configuration to create all AWS resources:
+
+```bash
+terraform apply
+```
+
+Type `yes` when prompted to confirm. This process takes approximately 5-10 minutes.
+
+### Step 4: Retrieve Output Values
+
+After Terraform completes, get the public IP addresses of your EC2 instances:
+
+```bash
+terraform output
+```
+
+Note these IP addresses - you'll need them for the Ansible inventory.
+
+### Step 5: Configure Ansible Inventory
+
+Navigate to the Ansible directory:
+
+```bash
+cd ansible
+```
+
+**Note:** The `inventory.ini` file contains placeholder IP addresses from the original deployment. Replace these with your own IP addresses from the Terraform output.
+
+Update `inventory.ini` with the IP addresses from Terraform output:
+
+```ini
+[nginx_ireland]
+
+
+
+[nginx_london]
+
+
+
+[nginx_servers:children]
+nginx_ireland
+nginx_london
+
+[flask_servers]
+
+
+[all:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/my_aws_key
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+```
+
+### Step 6: Test Ansible Connectivity
+
+Verify Ansible can reach all servers:
+
+```bash
+ansible all -i inventory.ini -m ping
+```
+
+Expected output: All servers should return `SUCCESS` with `"ping": "pong"`.
+
+### Step 7: Install and Configure Nginx
+
+Deploy Nginx to all public servers:
+
+```bash
+ansible-playbook -i inventory.ini nginx-playbook.yml
+```
+
+This installs Nginx on all four public-facing EC2 instances.
+
+### Step 8: Deploy Flask Application
+
+Install Flask on the backend server:
+
+```bash
+ansible-playbook -i inventory.ini flask-playbook.yml
+```
+
+This creates a simple Flask application running on port 5000.
+
+### Step 9: Configure Nginx Reverse Proxy
+
+Configure all Nginx servers to proxy requests to Flask:
+
+```bash
+ansible-playbook -i inventory.ini nginx-proxy-config.yml
+```
+
+### Step 10: Verify Deployment
+
+Test the application by visiting any of the four public IP addresses in a web browser:
+
+```
+http://<nginx-public-ip-1>
+http://<nginx-public-ip-2>
+http://<nginx-public-ip-3>
+http://<nginx-public-ip-4>
+```
+
+All should display: **"Hello from Flask backend!"**
 
 ## Features
 
@@ -66,6 +208,12 @@ Before deploying this infrastructure, ensure you have the following tools and ac
 ## DevOps Best Practices
 
 ## Cleanup
+
+To destroy all infrastructure and avoid ongoing AWS charges:
+
+```bash
+terraform destroy
+```
 
 ## License
 
