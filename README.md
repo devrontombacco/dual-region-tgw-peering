@@ -9,3 +9,11 @@
 ![Ansible](https://img.shields.io/badge/ansible-%231A1918.svg?style=for-the-badge&logo=ansible&logoColor=white)
 
 ## Overview
+
+This project demonstrates a multi-region AWS infrastructure with automated configuration management, using an enterprise-level networking set up. The infrastructure spans two AWS regions (Ireland and London) connected via Transit Gateway peering, enabling seamless cross-region communication between Virtual Private Clouds (VPCs). Four Nginx web servers are distributed across both regions, all configured to act as reverse proxies to a centralized Flask application backend. Key Architecture Highlights:
+
+- Multi-Region Deployment: Infrastructure deployed across eu-west-1 (Ireland) and eu-west-2 (London) for geographic distribution
+- Transit Gateway Peering: Enables private network connectivity between regions without VPC peering complexity
+- Infrastructure as Code: Entire infrastructure defined and managed through Terraform, ensuring reproducibility and version control
+- Configuration Management: Ansible automates server configuration across all instances, eliminating manual setup and ensuring consistency
+- Reverse Proxy Architecture: All four Nginx servers can proxy requests to a Flask backend, assiting with load distribution.
