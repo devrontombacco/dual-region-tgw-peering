@@ -253,6 +253,8 @@ To destroy all infrastructure and avoid ongoing AWS charges:
 terraform destroy
 ```
 
+Note: This will delete all infrastructure and cannot be undone.
+
 ## License
 
 This project is open source and available under the MIT License.
