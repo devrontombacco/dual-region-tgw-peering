@@ -46,6 +46,13 @@ During implementation, this was changed to deploy Flask on a public instance (lo
 
 ## Prerequisites before installation
 
+Before deploying this infrastructure, ensure you have the following tools and access configured:
+
+- AWS Access Key ID and Secret Access Key configured
+- Terraform (v1.0+)
+- Ansible (V2.9+)
+- SSH Key Pair
+
 ## Deployment
 
 ## Features
