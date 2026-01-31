@@ -30,9 +30,9 @@ resource "aws_security_group" "sg_nginx1" {
   }
 }
 
-resource "aws_security_group" "sg_nginx2" {
-  name        = "sg_nginx"
-  description = "Allow SSH + ICMP"
+resource "aws_security_group" "sg_flaskApp2" {
+  name        = "sg_flaskApp2"
+  description = "Allow SSH, ICMP and 5000"
   vpc_id      = aws_vpc.vpc2_ireland.id
   provider    = aws.ireland
 

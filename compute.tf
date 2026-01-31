@@ -54,7 +54,7 @@ resource "aws_instance" "ec2_2" {
   provider                    = aws.ireland
   key_name                    = "my_aws_key"
   associate_public_ip_address = true
-  vpc_security_group_ids      = [aws_security_group.sg_nginx2.id]
+  vpc_security_group_ids      = [aws_security_group.sg_flaskApp2.id]
 
   tags = {
     Name = "ec2_2"
