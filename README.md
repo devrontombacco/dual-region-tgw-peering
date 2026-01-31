@@ -18,11 +18,31 @@ This project demonstrates a multi-region AWS infrastructure with automated confi
 - Configuration Management: Ansible automates server configuration across all instances, eliminating manual setup and ensuring consistency
 - Reverse Proxy Architecture: All four Nginx servers can proxy requests to a Flask backend, assiting with load distribution.
 
-![Screenshot](/architecture.png)
-
 ## Architecture
 
+![Screenshot](/architecture.png)
+
+### Network Topology
+
+2 Regions
+
+- EU-WEST-1 (Ireland)
+- EU-WEST-2 (LONDON)
+  5 VPCs, of which 3 in Ireland and 2 in London
+- VPC-1: 10.0.0.0/16 (Ireland)
+- VPC-2: 10.1.0.0/16 (Ireland)
+- VPC-3: 10.2.0.0/16 (Ireland)
+- VPC-4: 10.100.0.0/16 (London)
+- VPC-5: 10.101.0.0/16 (London)
+- 2 Transit Gateways; 1 in each region
+- Transit Gateways are connected through peering
+- All VPCs have a public subnet, with their own Inter Gateway
+
 ### Design Decision: Flask Deployment
+
+**Note:**
+The original design placed Flask on a private subnet EC2 instance.
+During implementation, this was changed to deploy Flask on a public instance (loaded with Nginx) to avoid NAT Gateway costs (~$32/month) for this proof-of-concept project. In production, Flask should be deployed on private instances with NAT Gateway for proper security isolation.
 
 ## Prerequisites before installation
 
